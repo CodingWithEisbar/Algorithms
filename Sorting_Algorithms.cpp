@@ -97,7 +97,7 @@ void GenerateData(int a[], int n, int dataType)
 	}
 }
 
-//Basic sorting algorithms (Các thuật toán tìm kiếm cơ bản)
+//Basic sorting algorithms (Các thuật toán sắp xếp cơ bản)
 //---------------------------------------------------------------
 
 //1.
@@ -174,9 +174,9 @@ void countingSort(int a[], int n)
 		else if (a[i] < min)
 			min = a[i];
 	}
-	int cnt = max-min+1;
-	int* cnt_arr = new int [cnt];
-	memset(cnt_arr, 0, cnt*sizeof(int)); //Set all element's value of cnt_arr is 0
+	int cnt = max - min + 1;
+	int *cnt_arr = new int[cnt];
+	memset(cnt_arr, 0, cnt * sizeof(int)); //Set all element's value of cnt_arr is 0
 	for (int i = 0; i < n; i++)
 		cnt_arr[a[i] - min]++;
 	for (int i = 1; i < cnt; i++)
@@ -186,7 +186,80 @@ void countingSort(int a[], int n)
 		b[cnt_arr[a[i] - min] - 1] = a[i];
 		cnt_arr[a[i] - min]--;
 	}
-	memcpy(a, b, n * sizeof(int));	//Copy ouput array to given array
-	delete[]b;
-	delete[]cnt_arr;
+	memcpy(a, b, n * sizeof(int)); //Copy ouput array to given array
+	delete[] b;
+	delete[] cnt_arr;
+}
+
+//6.
+void merge(int a[], int left, int middle, int right)
+{
+	int
+}
+
+void mergeSort(int a[], int n)
+{
+}
+
+//7.
+void shakerSort(int a[], int n)
+{
+}
+
+//8.
+void heapify(int a[], int n, int i)
+{
+}
+
+void heapSort(int a[], int n)
+{
+}
+
+//9.
+int partition(int a[], int left, int right)
+{
+}
+
+void quickSort(int a[], int n)
+{
+}
+
+//10.
+void countSort(int a[], int n, int exp)
+{
+	int *result = new int[n];
+	memset(result, 0, n * sizeof(int));
+	int i, bucket[10] = {0};
+	for (i = 0, i < n; i++)
+		bucket[(a[i] / exp) % 10]++;
+	for (int i = 1; i < 10; i++)
+		bucket[i] += bucket[i-1];
+	for(i = n-1; i>=0;i--){
+		result[bucket[(a[i]/exp)%10]-1] = a[i];
+		bucket[(a[i]/exp)%10]--;
+	}
+	for(i = 0; i<n;i++)
+		a[i] = result[i];
+	delete [] result;
+	
+}
+
+void radixSort(int a[], int n)
+{
+	int maxInArr = a[0];
+	for (int i = 0; i < n; i++)
+		if (maxInArr < a[i])
+			maxInArr = a[i];
+	for (int exp = 1; maxInArr / exp > 0; exp *= 10)
+		countSort(a, n, exp);
+}
+
+//11.
+void flashSort(int a[], int n)
+{
+	int max = 0, min = a[0];
+	int m = floor(0.45*n);
+	vector<int> l;
+	l.resize(m);
+	
 }
