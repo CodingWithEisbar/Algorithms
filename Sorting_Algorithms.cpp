@@ -3,12 +3,12 @@
 Tổng hợp những thuật toán sắp xếp (Sorting Algorithms)
 -Basic-
 1. Bubble sort
-2. Shell sort
+2. Shake sort
 3. Insertion sort
 4. Selection sort
 5. Counting sort
 6. Merge sort
-7. Shaker sort
+7. Shell sort
 8. Heap sort
 9. Quick sort
 10. Radix sort
@@ -73,7 +73,7 @@ void GenerateNearlySortedData(int a[], int n)
 	{
 		int r1 = rand() % n;
 		int r2 = rand() % n;
-		HoanVi(a[r1], a[r2]);
+		hoanVi(a[r1], a[r2]);
 	}
 }
 void GenerateData(int a[], int n, int dataType)
@@ -114,21 +114,25 @@ void bubbleSort(int a[], int n)
 }
 
 //2.
-void shellSort(int a[], int n)
+void shakeSort(int a[], int n)
 {
-	int interval, i, j, temp;
-	for (interval = n / 2; interval > 0; interval /= 2)
-	{
-		for (i = interval; i < n; i++)
-		{
-			temp = a[i];
-			for (j = i; j >= interval && a[j - interval] > temp; j -= interval)
-			{
-				a[j] = a[j - interval];
+	int left, right, j, k;
+	left = 1;
+	right = n - 1;
+	do{
+		for(j = right; j >= left; j--)
+			if(a[j-1]>a[j]){
+				hoanVi(a[j], a[j-1]);
+				k=j;
 			}
-			a[j] = temp;
-		}
-	}
+		left = k+1;
+		for(j = left; j<=right;j+++)
+			if(a[j-1]>a[j]){
+				hoanVi(a[j], a[j-1]);
+				k = j;
+			}
+		right = k-1;
+	}while(left <= right);
 }
 
 //3.
@@ -202,8 +206,21 @@ void mergeSort(int a[], int n)
 }
 
 //7.
-void shakerSort(int a[], int n)
+void shellSort(int a[], int n)
 {
+	int interval, i, j, temp;
+	for (interval = n / 2; interval > 0; interval /= 2)
+	{
+		for (i = interval; i < n; i++)
+		{
+			temp = a[i];
+			for (j = i; j >= interval && a[j - interval] > temp; j -= interval)
+			{
+				a[j] = a[j - interval];
+			}
+			a[j] = temp;
+		}
+	}
 }
 
 //8.
@@ -233,15 +250,15 @@ void countSort(int a[], int n, int exp)
 	for (i = 0, i < n; i++)
 		bucket[(a[i] / exp) % 10]++;
 	for (int i = 1; i < 10; i++)
-		bucket[i] += bucket[i-1];
-	for(i = n-1; i>=0;i--){
-		result[bucket[(a[i]/exp)%10]-1] = a[i];
-		bucket[(a[i]/exp)%10]--;
+		bucket[i] += bucket[i - 1];
+	for (i = n - 1; i >= 0; i--)
+	{
+		result[bucket[(a[i] / exp) % 10] - 1] = a[i];
+		bucket[(a[i] / exp) % 10]--;
 	}
-	for(i = 0; i<n;i++)
+	for (i = 0; i < n; i++)
 		a[i] = result[i];
-	delete [] result;
-	
+	delete[] result;
 }
 
 void radixSort(int a[], int n)
@@ -258,8 +275,7 @@ void radixSort(int a[], int n)
 void flashSort(int a[], int n)
 {
 	int max = 0, min = a[0];
-	int m = floor(0.45*n);
+	int m = floor(0.45 * n);
 	vector<int> l;
 	l.resize(m);
-	
 }
