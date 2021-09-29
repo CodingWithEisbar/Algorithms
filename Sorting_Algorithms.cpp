@@ -24,6 +24,7 @@ Tổng hợp những thuật toán sắp xếp (Sorting Algorithms)
 #include <vector>
 #include <cmath>
 #include <time.h>
+#include <cstring>
 using namespace std;
 
 //Data Generator (Các hàm khởi tạo dữ liệu)
@@ -99,7 +100,7 @@ void GenerateData(int a[], int n, int dataType)
 
 //Basic sorting algorithms (Các thuật toán sắp xếp cơ bản)
 //---------------------------------------------------------------
-
+//Áp dụng cho kiểu dữ liệu số nguyên (integer)
 //1.
 void bubbleSort(int a[], int n)
 {
@@ -119,20 +120,23 @@ void shakeSort(int a[], int n)
 	int left, right, j, k;
 	left = 1;
 	right = n - 1;
-	do{
-		for(j = right; j >= left; j--)
-			if(a[j-1]>a[j]){
-				hoanVi(a[j], a[j-1]);
-				k=j;
-			}
-		left = k+1;
-		for(j = left; j<=right;j+++)
-			if(a[j-1]>a[j]){
-				hoanVi(a[j], a[j-1]);
+	do
+	{
+		for (j = right; j >= left; j--)
+			if (a[j - 1] > a[j])
+			{
+				hoanVi(a[j], a[j - 1]);
 				k = j;
 			}
-		right = k-1;
-	}while(left <= right);
+		left = k + 1;
+		for (j = left; j <= right; j++)
+			if (a[j - 1] > a[j])
+			{
+				hoanVi(a[j], a[j - 1]);
+				k = j;
+			}
+		right = k - 1;
+	} while (left <= right);
 }
 
 //3.
@@ -198,7 +202,6 @@ void countingSort(int a[], int n)
 //6.
 void merge(int a[], int left, int middle, int right)
 {
-	int
 }
 
 void mergeSort(int a[], int n)
@@ -226,10 +229,31 @@ void shellSort(int a[], int n)
 //8.
 void heapify(int a[], int n, int i)
 {
+	int left = 2 * i + 1;
+	int right = 2 * i + 2;
+	int root = i;
+	if (left < n && a[root] < a[left])
+		root = left;
+	if (right < n && a[root] < a[right])
+		root = right;
+	if (root != i)
+	{
+		hoanVi(a[root], a[i]);
+		heapify(a, n, root);
+	}
 }
 
 void heapSort(int a[], int n)
 {
+	for (int i = n / 2 - 1; i >= 0; i--)
+	{
+		heapify(a, n, i);
+	}
+	for (int i = n - 1; i >= 0; i--)
+	{
+		hoanVi(a[0], a[i]);
+		heapify(a, i, 0);
+	}
 }
 
 //9.
@@ -247,7 +271,7 @@ void countSort(int a[], int n, int exp)
 	int *result = new int[n];
 	memset(result, 0, n * sizeof(int));
 	int i, bucket[10] = {0};
-	for (i = 0, i < n; i++)
+	for (i = 0; i < n; i++)
 		bucket[(a[i] / exp) % 10]++;
 	for (int i = 1; i < 10; i++)
 		bucket[i] += bucket[i - 1];
@@ -278,4 +302,103 @@ void flashSort(int a[], int n)
 	int m = floor(0.45 * n);
 	vector<int> l;
 	l.resize(m);
+	for (int i = 1; i < n; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+		if (a[i] > a[max])
+		{
+			max = i;
+		}
+	}
+	if (min == a[max])
+	{
+		return;
+	}
+	double c1 = (double)(m - 1) / (a[max] - min);
+
+	for (int k = 0; k < m; k++)
+	{
+		l[k] = 0;
+	}
+	for (int j = 0; j < n; j++)
+	{
+		int k = int(c1 * (a[j] - min));
+		++l[k];
+	}
+	for (int p = 1; p < m; p++)
+	{
+		l[p] = l[p] + l[p - 1];
+	}
+
+	swap(a[0], a[max]);
+
+	// permutation
+	int move = 0, t = 0, flash;
+	int j = 0;
+	int k = m - 1;
+
+	while (move < (n - 1))
+	{
+		while (j > (l[k] - 1))
+		{
+			++j;
+			k = int(c1 * (a[j] - min));
+		}
+		flash = a[j];
+		if (k < 0)
+			break;
+		while (j != l[k])
+		{
+			k = int(c1 * (flash - min));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++move;
+		}
+	}
+	//insertion
+	for (int i = 1; i < n; i++)
+	{
+		int v = a[i];
+		int j = i - 1;
+		for (; j >= 0 && a[j] > v; j--)
+		{
+			a[j + 1] = a[j];
+		}
+		a[j + 1] = v;
+	}
+}
+
+//Advanced sorting algorithms (Các thuật toán sắp xếp nâng cao)
+//---------------------------------------------------------------
+
+//1.
+//Áp dụng cho kiểu dữ liệu float 
+void bucketSort(int a[], int n)
+{
+
+}
+
+void printArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+}
+
+int main()
+{
+	int *a, n;
+	cin >> n;
+	a = new int[n];
+	GenerateRandomData(a, n);
+	cout << "\nYour array: ";
+	printArray(a, n);
+	radixSort(a, n);
+	cout << "\nAfter sort: ";
+	printArray(a, n);
+	delete[] a;
+	return 0;
 }

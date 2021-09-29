@@ -2,6 +2,7 @@
 ################################################################
 Tổng hợp những thuật toán tìm kiếm (Searching Algorithms)
 Data type: Interger (int)
+Array type: Sorted
 
 1. Binary Search (Tìm kiếm nhị phân)
 2. Interpolation Search (Tìm kiếm nội suy)
