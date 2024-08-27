@@ -148,12 +148,11 @@ int main()
     int n, *a, left = 0, right = n - 1;
     cin >> n;
     a = new int[n];
-    GenerateSortedArray(a, n);
+    GenerateSortedData(a, n);
     printArray(a, n);
     int res01 = binarySearchWhile(a, n, 77);
-    int res02 = binarySearchRecursive(a, n, )
-                    cout
-                << "\nResult 01: " << res01;
+    int res02 = binarySearchRecursive(a, n, );
+    cout << "\nResult 01: " << res01;
     delete[] a;
     return 0;
 }

@@ -335,7 +335,7 @@ void flashSort(int a[], int n)
 
 	swap(a[0], a[max]);
 
-	// permutation
+	// permutation - hoán vị
 	int move = 0, t = 0, flash;
 	int j = 0;
 	int k = m - 1;
@@ -376,10 +376,13 @@ void flashSort(int a[], int n)
 //---------------------------------------------------------------
 
 //1.
-//Áp dụng cho kiểu dữ liệu float 
+//Áp dụng cho kiểu dữ liệu float, double 
 void bucketSort(int a[], int n)
 {
-
+	//a. Tạo một bucket rỗng
+	//b. Chuyển các phần tử trong mảng vào các ô bucket tương ứng 
+	//c. Sắp xếp lại các phần tử trong bucket một các độc lập
+	//d. Chuyển các phần tử vào lại trong mảng 
 }
 
 void printArray(int a[], int n)
