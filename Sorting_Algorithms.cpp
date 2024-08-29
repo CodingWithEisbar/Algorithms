@@ -259,6 +259,7 @@ void heapSort(int a[], int n)
 //9.
 int partition(int a[], int left, int right)
 {
+	return 0;
 }
 
 void quickSort(int a[], int n)
@@ -380,6 +381,7 @@ void flashSort(int a[], int n)
 void bucketSort(int a[], int n)
 {
 	//a. Tạo một bucket rỗng
+
 	//b. Chuyển các phần tử trong mảng vào các ô bucket tương ứng 
 	//c. Sắp xếp lại các phần tử trong bucket một các độc lập
 	//d. Chuyển các phần tử vào lại trong mảng 
