@@ -202,10 +202,14 @@ void countingSort(int a[], int n)
 //6.
 void merge(int a[], int left, int middle, int right)
 {
+	int subArrayOne = middle - left + 1;
+	int subArrayTwo = right - middle;
 }
 
 void mergeSort(int a[], int n)
 {
+	//the middle value is determine in this function
+	
 }
 
 //7.
