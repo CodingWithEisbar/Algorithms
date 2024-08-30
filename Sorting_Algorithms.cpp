@@ -202,8 +202,18 @@ void countingSort(int a[], int n)
 //6.
 void merge(int a[], int left, int middle, int right)
 {
+	//Initial the sub array size
 	int subArrayOne = middle - left + 1;
 	int subArrayTwo = right - middle;
+
+	//Create temp subarray
+	vector<int> Left(subArrayOne);
+	vector<int> Right(subArrayTwo);
+
+	//Copy data to 2 subarray left, right
+	
+
+
 }
 
 void mergeSort(int a[], int n)
