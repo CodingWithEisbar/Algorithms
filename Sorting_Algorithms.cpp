@@ -154,6 +154,16 @@ void insertionSort(int a[], int n)
 	}
 }
 
+void insertionSort(vector<double>& bucket)
+{
+	int n = bucket.size();
+	for (int i = 0; i<n; i++)
+	{
+		float key = bucket[i];
+		int j = i-1;
+		while (j>= 0 && )
+	}
+}
 //4.
 void selectionSort(int a[], int n)
 {
@@ -394,10 +404,22 @@ void flashSort(int a[], int n)
 //Áp dụng cho kiểu dữ liệu float, double 
 void bucketSort(int a[], int n)
 {
-	//a. Tạo một bucket rỗng
-
+	//a. Tạo một bucket rỗng để chứa các phần tử trong mảng
+	vector<double> bucket[n];
 	//b. Chuyển các phần tử trong mảng vào các ô bucket tương ứng 
-	//c. Sắp xếp lại các phần tử trong bucket một các độc lập
+	for (int i = 0; i<n; i++)
+	{
+		int bucket_index = n*a[i];
+		bucket[bucket_index].push_back(a[i]);
+	}
+
+	//c. Sắp xếp lại các phần tử trong bucket một các độc lập (sử dụng kiểu insertion sort)
+	for (int i = 0; i<n; i++)
+	{
+		insertionSort()
+	}
+
+
 	//d. Chuyển các phần tử vào lại trong mảng 
 }
 
