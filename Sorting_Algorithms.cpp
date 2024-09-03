@@ -169,6 +169,7 @@ void insertionSort(vector<double>& bucket) //Dành cho thuật toán bucket sort
 		bucket[j+1] = key;
 	}
 }
+
 //4.
 void selectionSort(int a[], int n)
 {
@@ -426,7 +427,13 @@ void bucketSort(int a[], int n)
 
 	//d. Chuyển các phần tử vào lại trong mảng 
 	int index = 0;
-	
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < bucket[i].size(); j++)
+		{
+			a[index++] = bucket[i][j];
+		}
+	}
 }
 
 void printArray(int a[], int n)
