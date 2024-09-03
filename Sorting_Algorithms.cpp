@@ -154,14 +154,19 @@ void insertionSort(int a[], int n)
 	}
 }
 
-void insertionSort(vector<double>& bucket)
+void insertionSort(vector<double>& bucket) //Dành cho thuật toán bucket sort
 {
 	int n = bucket.size();
 	for (int i = 0; i<n; i++)
 	{
 		float key = bucket[i];
 		int j = i-1;
-		while (j>= 0 && )
+		while (j>= 0 && bucket[j] > key)
+		{
+			bucket[j+1] = bucket[j];
+			j--;
+		}
+		bucket[j+1] = key;
 	}
 }
 //4.
@@ -416,11 +421,12 @@ void bucketSort(int a[], int n)
 	//c. Sắp xếp lại các phần tử trong bucket một các độc lập (sử dụng kiểu insertion sort)
 	for (int i = 0; i<n; i++)
 	{
-		insertionSort()
+		insertionSort(bucket[i])
 	}
 
-
 	//d. Chuyển các phần tử vào lại trong mảng 
+	int index = 0;
+	
 }
 
 void printArray(int a[], int n)
