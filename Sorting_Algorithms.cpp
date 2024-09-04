@@ -219,16 +219,33 @@ void countingSort(int a[], int n)
 void merge(int a[], int left, int middle, int right)
 {
 	//Initial the sub array size
-	int subArrayOne = middle - left + 1;
-	int subArrayTwo = right - middle;
+	int subArrayOneSize = middle - left + 1;
+	int subArrayTwoSize = right - middle;
 
 	//Create temp subarray
-	vector<int> Left(subArrayOne);
-	vector<int> Right(subArrayTwo);
+	vector<int> Left(subArrayOneSize);
+	vector<int> Right(subArrayTwoSize);
 
 	//Copy data to 2 subarray left, right
-	
+	for(int i = 0; i < subArrayOneSize; i++)
+	{
+		Left[i] = a[left + i];
+	}
+	for (int j = 0; j< subArrayTwoSize; j++)
+	{
+		Right[j] = a[mid + 1 + j];
+	}
 
+	int i = 0;
+	int j = 0;
+	int k = left;
+
+	//Merge the temp vectors back
+	//into a[left...right]
+	while (i < subArrayOneSize && j < subArrayTwoSize){
+		
+
+	}
 
 }
 
