@@ -30,7 +30,7 @@ using namespace std;
 //Data Generator (Các hàm khởi tạo dữ liệu)
 //---------------------------------------------------------------
 template <class T>
-void hoanVi(T &a, T &b)
+void swapFunc(T &a, T &b)
 {
 	T x = a;
 	a = b;
@@ -74,7 +74,7 @@ void GenerateNearlySortedData(int a[], int n)
 	{
 		int r1 = rand() % n;
 		int r2 = rand() % n;
-		hoanVi(a[r1], a[r2]);
+		swapFunc(a[r1], a[r2]);
 	}
 }
 void GenerateData(int a[], int n, int dataType)
@@ -109,7 +109,7 @@ void bubbleSort(int a[], int n)
 		for (int j = n - 1; j >= i; j--)
 		{
 			if (a[j] < a[j - 1])
-				hoanVi(a[j], a[j - 1]);
+				swapFunc(a[j], a[j - 1]);
 		}
 	}
 }
@@ -125,14 +125,14 @@ void shakeSort(int a[], int n)
 		for (j = right; j >= left; j--)
 			if (a[j - 1] > a[j])
 			{
-				hoanVi(a[j], a[j - 1]);
+				swapFunc(a[j], a[j - 1]);
 				k = j;
 			}
 		left = k + 1;
 		for (j = left; j <= right; j++)
 			if (a[j - 1] > a[j])
 			{
-				hoanVi(a[j], a[j - 1]);
+				swapFunc(a[j], a[j - 1]);
 				k = j;
 			}
 		right = k - 1;
@@ -182,7 +182,7 @@ void selectionSort(int a[], int n)
 			if (a[j] < a[minIndex])
 				minIndex = j;
 		}
-		hoanVi(a[i], a[minIndex]);
+		swapFunc(a[i], a[minIndex]);
 	}
 }
 
@@ -268,7 +268,7 @@ void heapify(int a[], int n, int i)
 		root = right;
 	if (root != i)
 	{
-		hoanVi(a[root], a[i]);
+		swapFunc(a[root], a[i]);
 		heapify(a, n, root);
 	}
 }
@@ -281,7 +281,7 @@ void heapSort(int a[], int n)
 	}
 	for (int i = n - 1; i >= 0; i--)
 	{
-		hoanVi(a[0], a[i]);
+		swapFunc(a[0], a[i]);
 		heapify(a, i, 0);
 	}
 }
@@ -364,7 +364,7 @@ void flashSort(int a[], int n)
 		l[p] = l[p] + l[p - 1];
 	}
 
-	swap(a[0], a[max]);
+	swapFunc(a[0], a[max]);
 
 	// permutation - hoán vị
 	int move = 0, t = 0, flash;
@@ -408,21 +408,22 @@ void flashSort(int a[], int n)
 
 //1.
 //Áp dụng cho kiểu dữ liệu float, double 
-void bucketSort(int a[], int n)
+void bucketSort(double a[], int n)
 {
 	//a. Tạo một bucket rỗng để chứa các phần tử trong mảng
 	vector<double> bucket[n];
+	
 	//b. Chuyển các phần tử trong mảng vào các ô bucket tương ứng 
 	for (int i = 0; i<n; i++)
 	{
 		int bucket_index = n*a[i];
 		bucket[bucket_index].push_back(a[i]);
 	}
-
+	
 	//c. Sắp xếp lại các phần tử trong bucket một các độc lập (sử dụng kiểu insertion sort)
 	for (int i = 0; i<n; i++)
 	{
-		insertionSort(bucket[i])
+		insertionSort(bucket[i]);
 	}
 
 	//d. Chuyển các phần tử vào lại trong mảng 

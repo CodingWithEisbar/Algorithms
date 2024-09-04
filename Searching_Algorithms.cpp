@@ -23,7 +23,7 @@ using namespace std;
 //Data Generator (Các hàm khởi tạo dữ liệu)
 //---------------------------------------------------------------
 template <class T>
-void hoanVi(T &a, T &b)
+void swapFunc(T &a, T &b)
 {
     T x = a;
     a = b;
@@ -67,7 +67,7 @@ void GenerateNearlySortedData(int a[], int n)
     {
         int r1 = rand() % n;
         int r2 = rand() % n;
-        hoanVi(a[r1], a[r2]);
+        swapFunc(a[r1], a[r2]);
     }
 }
 void GenerateData(int a[], int n, int dataType)
